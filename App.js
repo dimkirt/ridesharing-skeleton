@@ -54,6 +54,7 @@ export default class GeoLocationExample extends Component{
             {
               // settings object
               // Others except timeout seem to create a bug
+              // https://github.com/facebook/react-native/issues/12996
               //enableHighAccuracy: true,
               timeout: 20000,
               //maximumAge: 1000
