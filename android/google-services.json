@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1008211223400",
+    "firebase_url": "https://ridesharingskeleton.firebaseio.com",
+    "project_id": "ridesharingskeleton",
+    "storage_bucket": "ridesharingskeleton.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008211223400:android:9ab837e67d4709ec",
+        "android_client_info": {
+          "package_name": "com.rideshareskeleton"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1008211223400-dlv6v3n8b61567ag23n1it2g940umiha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlQT6hZHNG3_thihVLTGBNyLo1XsoX8Wo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
