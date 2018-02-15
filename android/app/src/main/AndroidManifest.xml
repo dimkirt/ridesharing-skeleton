@@ -6,7 +6,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    
+
+    <!-- Firebase Cloud Messaging Required Permissions-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="22" />
@@ -20,6 +25,7 @@
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
+        android:launchMode="singleTop"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
         android:windowSoftInputMode="adjustResize">
         <intent-filter>
@@ -28,6 +34,37 @@
         </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+
+      <!-- Firebase Cloud Messaging Services -->
+      <service
+        android:name="io.invertase.firebase.messaging.MessagingService"
+        android:enabled="true"
+        android:exported="true">
+          <intent-filter>
+            <action android:name="com.google.firebase.MESSAGING_EVENT" />
+          </intent-filter>
+      </service>
+      <service
+        android:name="io.invertase.firebase.messaging.InstanceIdService"
+        android:exported="false">
+          <intent-filter>
+            <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+          </intent-filter>
+      </service>
+
+      <!-- Firebase Cloud Messaging Services (for local notifications)-->
+      <receiver android:name="io.invertase.firebase.messaging.RNFirebaseLocalMessagingPublisher"/>
+      <receiver
+        android:enabled="true"
+        android:exported="true"
+        android:name="io.invertase.firebase.messaging.RNFirebaseSystemBootEventReceiver">
+          <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+            <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
+            <category android:name="android.intent.category.DEFAULT" />
+          </intent-filter>
+      </receiver>
     </application>
 
 </manifest>
