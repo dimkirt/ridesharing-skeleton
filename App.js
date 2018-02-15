@@ -6,19 +6,57 @@ import {
   PermissionsAndroid
 } from 'react-native';
 
+// import firebase
+import firebase from 'react-native-firebase';
+
 export default class GeoLocationExample extends Component{
 
   constructor(props){
     super(props);
+
+    // Add firebase things to state too
     this.state = {
       latitude: null,
       longitude: null,
       error: null,
+      notif: null
     };
   }
 
+  _setupFirebase(){
+    // Firebase app
+    
+    // Receives the app as an argument, if we don't provide an app the
+    // default app is used (which one is the default?)
+    const FCM = firebase.messaging();
+
+    // Topic doesn't work with Notifications creator for some reason
+    FCM.subscribeToTopic('/topics/hello');
+
+    FCM.onMessage(message => {
+      //console.error('Caught by onMessage: ' + JSON.stringify(message));
+      this.setState({
+        error: null,
+        notif: 'From onMessage: ' + message.msg
+      });
+    });
+    
+    // This is triggered when the application has opened from a notification
+    FCM.getInitialNotification()
+      .then(res => {
+        // res object
+        //console.error('Caught by initNotif: ' + JSON.stringify(res));
+        this.setState({
+          error: null,
+          notif: 'From initNotif: ' + res.msg
+        });
+    });
+  }
+
   componentDidMount(){
+    // Add Firebase things here?
     this._requestPermission();
+    this._setupFirebase();
   }
 
   /*
@@ -73,6 +111,7 @@ export default class GeoLocationExample extends Component{
       <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Latitude: {this.state.latitude}</Text>
         <Text>Longitude: {this.state.longitude}</Text>
+        <Text>Notif: {this.state.notif}</Text>
         {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
       </View>
     );
