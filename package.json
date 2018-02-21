@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "bundle-assets": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
+    "bundle-assets": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
@@ -11,7 +11,8 @@
     "react": "16.2.0",
     "react-native": "0.53.0",
     "react-native-firebase": "^3.2.5",
-    "react-native-maps": "^0.20.1"
+    "react-native-maps": "^0.20.1",
+    "react-navigation": "^1.1.2"
   },
   "devDependencies": {
     "babel-jest": "22.2.2",
